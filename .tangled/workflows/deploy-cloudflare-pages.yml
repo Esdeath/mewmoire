@@ -11,9 +11,8 @@ dependencies:
   nixpkgs:
     - nodejs
     - curl
-    - python3
-    - python3Packages.fonttools
-    - python3Packages.brotli
+    - python313packages.fonttools
+    - python313packages.brotli
 
 steps:
   - name: "Install dependencies"

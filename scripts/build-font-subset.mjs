@@ -76,10 +76,33 @@ function ensureSourceFont() {
   });
 }
 
+function hasCommand(command) {
+  try {
+    execFileSync(command, ["--help"], { stdio: "ignore" });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function nixPythonPackagePaths(packageNames) {
+  const storeDir = "/nix/store";
+  if (!existsSync(storeDir)) return [];
+
+  const paths = [];
+  for (const entry of readdirSync(storeDir)) {
+    if (!packageNames.some((name) => entry.includes(`-${name}-`))) continue;
+    const match = entry.match(/python(\d+\.\d+)-/);
+    if (!match) continue;
+
+    const sitePackages = join(storeDir, entry, "lib", `python${match[1]}`, "site-packages");
+    if (existsSync(sitePackages)) paths.push(sitePackages);
+  }
+  return paths;
+}
+
 function runSubset() {
-  const args = [
-    "-m",
-    "fontTools.subset",
+  const subsetArgs = [
     SOURCE_FONT,
     `--text-file=${CHARS_FILE}`,
     `--output-file=${OUTPUT_FONT}`,
@@ -97,10 +120,19 @@ function runSubset() {
   ];
 
   try {
-    execFileSync("python3", args, { stdio: "inherit" });
+    if (hasCommand("pyftsubset")) {
+      const extraPythonPath = nixPythonPackagePaths(["brotli", "brotlicffi"]);
+      const pythonPath = [process.env.PYTHONPATH, ...extraPythonPath].filter(Boolean).join(":");
+      execFileSync("pyftsubset", subsetArgs, {
+        stdio: "inherit",
+        env: { ...process.env, ...(pythonPath ? { PYTHONPATH: pythonPath } : {}) }
+      });
+    } else {
+      execFileSync("python3", ["-m", "fontTools.subset", ...subsetArgs], { stdio: "inherit" });
+    }
   } catch {
     throw new Error(
-      "Font subset build failed. Please install python3 + fonttools + brotli (pip install -r requirements-fonts.txt)."
+      "Font subset build failed. Please install pyftsubset or python3 + fonttools + brotli (pip install -r requirements-fonts.txt)."
     );
   }
 }
