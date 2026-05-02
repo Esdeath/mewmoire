@@ -27,4 +27,11 @@ steps:
       : "${CLOUDFLARE_ACCOUNT_ID:?Missing Tangled secret: CLOUDFLARE_ACCOUNT_ID}"
       : "${CLOUDFLARE_API_TOKEN:?Missing Tangled secret: CLOUDFLARE_API_TOKEN}"
       : "${CLOUDFLARE_PAGES_PROJECT_NAME:?Missing Tangled secret: CLOUDFLARE_PAGES_PROJECT_NAME}"
+
+      # Nixery exposes env at /bin/env, while npm package bins commonly use
+      # #!/usr/bin/env. Add the standard compatibility symlink inside the
+      # ephemeral CI container before invoking npx-installed wrangler.
+      mkdir -p /usr/bin
+      ln -sf /bin/env /usr/bin/env
+
       npx wrangler pages deploy _site --project-name="$CLOUDFLARE_PAGES_PROJECT_NAME" --branch="${TANGLED_REF_NAME:-master}"
