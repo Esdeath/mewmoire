@@ -304,6 +304,56 @@ a:hover{ text-decoration: none; }
 .prose p:last-child{ margin-bottom: 0; }
 .prose strong{ color: #1f1f1f; }
 
+/* Tables — warm, readable; horizontal scroll on narrow screens */
+.prose .table-wrap{
+  overflow-x: auto;
+  margin: 0 0 16px;
+  -webkit-overflow-scrolling: touch;
+}
+.prose table{
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 15px;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.prose thead th{
+  background: var(--surface2);
+  color: var(--ink);
+  font-weight: 600;
+}
+.prose th,
+.prose td{
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.prose tbody tr:nth-child(even){
+  background: var(--surface2);
+}
+.prose table code{
+  white-space: nowrap;
+}
+
+/* Task lists — rendered checkboxes for `- [ ]` / `- [x]` */
+.prose ul.contains-task-list{
+  list-style: none;
+  padding-left: 0;
+}
+.prose ul.contains-task-list .contains-task-list{
+  padding-left: 1.4em;
+}
+.prose li.task-list-item{
+  list-style: none;
+}
+.prose .task-list-item-checkbox{
+  margin: 0 .5em 0 0;
+  vertical-align: -1px;
+  accent-color: var(--primary);
+}
+
 /* prose link rules are defined near the top */
 
 /* Homepage shows full entries: no excerpt clamping */
