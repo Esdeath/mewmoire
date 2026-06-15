@@ -18,6 +18,7 @@
   --radius-sm: 12px;
   --max: 860px;
   --font-main: "LXGW WenKai Subset", "LXGW WenKai", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", "LXGW WenKai Subset", monospace;
 }
 
 *{ box-sizing:border-box; }
@@ -353,6 +354,56 @@ a:hover{ text-decoration: none; }
   vertical-align: -1px;
   accent-color: var(--primary);
 }
+
+/* Inline code — subtle warm chip, high contrast */
+.prose :not(pre) > code{
+  font-family: var(--font-mono);
+  font-size: .9em;
+  background: #F2E9E4;
+  color: #B0453A;
+  padding: .12em .42em;
+  border-radius: 5px;
+  word-break: break-word;
+}
+
+/* Code blocks — light panel + dark text (~12:1 contrast); keep ASCII
+   alignment via horizontal scroll instead of wrapping. */
+.prose pre{
+  margin: 0 0 16px;
+  padding: 14px 18px;
+  background: #F6EFEB;
+  color: #1f1f1f;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-overflow-scrolling: touch;
+}
+.prose pre code{
+  font-family: var(--font-mono);
+  background: none;
+  color: inherit;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: inherit;
+  white-space: pre;
+  word-break: normal;
+}
+
+/* Blockquotes — warm accent bar */
+.prose blockquote{
+  margin: 0 0 16px;
+  padding: 2px 16px;
+  border-left: 3px solid var(--primary2);
+  background: var(--surface2);
+  color: var(--muted);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.prose blockquote p{ margin: 10px 0; }
+.prose blockquote p:first-child{ margin-top: 0; }
+.prose blockquote p:last-child{ margin-bottom: 0; }
 
 /* prose link rules are defined near the top */
 
