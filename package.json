@@ -5,7 +5,7 @@
   "scripts": {
     "font:subset": "node scripts/build-font-subset.mjs",
     "dev": "npm run font:subset && node node_modules/@11ty/eleventy/cmd.cjs --serve",
-    "build": "npm run font:subset && node node_modules/@11ty/eleventy/cmd.cjs",
+    "build": "rm -rf _site && npm run font:subset && node node_modules/@11ty/eleventy/cmd.cjs",
     "deploy": "bash scripts/publish.sh"
   },
   "dependencies": {

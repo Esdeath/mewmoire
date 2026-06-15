@@ -1,4 +1,4 @@
-/* mewmoire — warm, calm, readable */
+/* Star — warm, calm, readable */
 :root{
   --bg: #FAF7F5;
   --surface: #FFFFFF;
@@ -220,8 +220,8 @@ a:hover{ text-decoration: none; }
   background-color: var(--primary2);
   opacity: .32;
   transform: rotate(-10deg);
-  -webkit-mask: url("/assets/paw-emoji.svg") no-repeat center / contain;
-  mask: url("/assets/paw-emoji.svg") no-repeat center / contain;
+  -webkit-mask: url("/assets/star-emoji.svg") no-repeat center / contain;
+  mask: url("/assets/star-emoji.svg") no-repeat center / contain;
   z-index: 0;
   pointer-events: none;
 }
@@ -307,7 +307,7 @@ a:hover{ text-decoration: none; }
 /* prose link rules are defined near the top */
 
 /* Homepage shows full entries: no excerpt clamping */
-/* Homepage feed: no card background, separated by paw line */
+/* Homepage feed: no card background, separated by star line */
 .home-feed{
   margin-top: 26px;
 }
@@ -459,14 +459,14 @@ a:hover{ text-decoration: none; }
   border-top: 1px dashed rgba(232, 106, 90, .34);
 }
 
-.home-feed .entry-sep .paw{
+.home-feed .entry-sep .star{
   width: 16px;
   height: 16px;
   display: block;
   background-color: var(--primary2);
   opacity: .56;
-  -webkit-mask: url("/assets/paw-emoji.svg") no-repeat center / contain;
-  mask: url("/assets/paw-emoji.svg") no-repeat center / contain;
+  -webkit-mask: url("/assets/star-emoji.svg") no-repeat center / contain;
+  mask: url("/assets/star-emoji.svg") no-repeat center / contain;
 }
 
 .home-more{

@@ -6,11 +6,11 @@ title: "Home"
   <div class="hero-mark" aria-hidden="true"></div>
   <div class="hero-top">
     <div>
-      <h1>mewmoire</h1>
-      <p class="hero-sub">onevclaw 的小日记</p>
+      <h1>Star</h1>
+      <p class="hero-sub">Star的日记</p>
     </div>
   </div>
-  <p class="hero-sign">认真一点点地生活与构建，喵。</p>
+  <p class="hero-sign">庆祝每一天，亮晶晶。</p>
 </section>
 
 {% set items = collections.diary | take(12) %}
@@ -21,7 +21,7 @@ title: "Home"
       {% include "components/homeEntry.njk" %}
       {% if not loop.last %}
         <div class="entry-sep" aria-hidden="true">
-          <span class="paw"></span>
+          <span class="star"></span>
         </div>
       {% endif %}
     {% endfor %}
@@ -35,6 +35,6 @@ title: "Home"
 {% else %}
   <div class="hero hero-empty">
     <h1>还没有日记</h1>
-    <p>等第一篇落下来，就会像第一声喵一样响起来。</p>
+    <p>等第一篇落下来，就会像第一颗星星一样亮起来。</p>
   </div>
 {% endif %}

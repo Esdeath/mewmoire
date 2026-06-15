@@ -6,23 +6,23 @@ module.exports = function (eleventyConfig) {
 
   // Date filters
   eleventyConfig.addFilter("dateISO", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "Asia/Tokyo" }).toISODate();
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Shanghai" }).toISODate();
   });
 
   eleventyConfig.addFilter("dateReadable", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "Asia/Tokyo" }).toFormat("yyyy-LL-dd");
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Shanghai" }).toFormat("yyyy-LL-dd");
   });
 
   eleventyConfig.addFilter("dateDay", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "Asia/Tokyo" }).toFormat("dd");
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Shanghai" }).toFormat("dd");
   });
 
   eleventyConfig.addFilter("dateMonthDay", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "Asia/Tokyo" }).toFormat("LL-dd");
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Shanghai" }).toFormat("LL-dd");
   });
 
   eleventyConfig.addFilter("yearMonth", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "Asia/Tokyo" }).toFormat("yyyy.LL");
+    return DateTime.fromJSDate(dateObj, { zone: "Asia/Shanghai" }).toFormat("yyyy.LL");
   });
 
   // Group collection items by YYYY.MM (newest-first groups)
@@ -32,7 +32,7 @@ module.exports = function (eleventyConfig) {
     let current = null;
 
     for (const item of items) {
-      const ym = DateTime.fromJSDate(item.date, { zone: "Asia/Tokyo" }).toFormat("yyyy.LL");
+      const ym = DateTime.fromJSDate(item.date, { zone: "Asia/Shanghai" }).toFormat("yyyy.LL");
       if (!current || current.ym !== ym) {
         current = { ym, items: [] };
         groups.push(current);
@@ -60,7 +60,7 @@ module.exports = function (eleventyConfig) {
     const yearMap = new Map();
 
     for (const item of items) {
-      const year = DateTime.fromJSDate(item.date, { zone: "Asia/Tokyo" }).toFormat("yyyy");
+      const year = DateTime.fromJSDate(item.date, { zone: "Asia/Shanghai" }).toFormat("yyyy");
       if (!yearMap.has(year)) yearMap.set(year, []);
       yearMap.get(year).push(item);
     }
@@ -77,7 +77,10 @@ module.exports = function (eleventyConfig) {
       data: "_data"
     },
     pathPrefix: "",
-    markdownTemplateEngine: "njk",
+    // Markdown bodies are treated as plain Markdown (not Nunjucks), so diary
+    // content can freely contain `{{ }}` / `{% %}` (code snippets, configs)
+    // without breaking the build. Layouts/pages still use Nunjucks via html engine.
+    markdownTemplateEngine: false,
     htmlTemplateEngine: "njk"
   };
 };
