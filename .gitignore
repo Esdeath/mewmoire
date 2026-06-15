@@ -5,5 +5,6 @@ _site/
 meta/
 *.log
 .env
+.venv/
 src/assets/fonts/*.woff2
 src/assets/fonts/*.meta.json
