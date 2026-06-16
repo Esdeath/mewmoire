@@ -718,6 +718,15 @@ a:hover{ text-decoration: none; }
   width: 80%;
   margin: 0 auto;
   padding: 0;
+  text-align: center;
+}
+
+.site-footer p{
+  margin: 0 0 4px;
+}
+
+.site-footer .beian-link{
+  color: var(--muted2);
 }
 
 hr{
