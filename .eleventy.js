@@ -1,6 +1,15 @@
 const { DateTime } = require("luxon");
 
-module.exports = function (eleventyConfig) {
+function sortDiaryEntries(items) {
+  return items.sort((a, b) => {
+    const pinnedDelta =
+      Number(Boolean(b.data && b.data.pinned)) -
+      Number(Boolean(a.data && a.data.pinned));
+    return pinnedDelta || (b.date - a.date);
+  });
+}
+
+function configureEleventy(eleventyConfig) {
   // Copy-through
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
@@ -51,12 +60,12 @@ module.exports = function (eleventyConfig) {
 
   // Diary collection: sorted newest first
   eleventyConfig.addCollection("diary", (collectionApi) => {
-    return collectionApi.getFilteredByTag("diary").sort((a, b) => b.date - a.date);
+    return sortDiaryEntries(collectionApi.getFilteredByTag("diary"));
   });
 
   // Archive collection grouped by year (newest year first)
   eleventyConfig.addCollection("diaryByYear", (collectionApi) => {
-    const items = collectionApi.getFilteredByTag("diary").sort((a, b) => b.date - a.date);
+    const items = sortDiaryEntries(collectionApi.getFilteredByTag("diary"));
     const yearMap = new Map();
 
     for (const item of items) {
@@ -131,4 +140,7 @@ module.exports = function (eleventyConfig) {
     markdownTemplateEngine: false,
     htmlTemplateEngine: "njk"
   };
-};
+}
+
+module.exports = configureEleventy;
+module.exports.sortDiaryEntries = sortDiaryEntries;

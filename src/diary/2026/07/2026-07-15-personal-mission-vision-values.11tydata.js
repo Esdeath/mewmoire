@@ -1,0 +1,3 @@
+module.exports = {
+  pinned: true
+};
