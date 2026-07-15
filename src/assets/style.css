@@ -413,6 +413,107 @@ a:hover{ text-decoration: none; }
   margin-top: 26px;
 }
 
+.pinned-section{
+  width: 80%;
+  margin: 26px auto 0;
+  padding: 18px 20px 8px;
+  border: 1px solid rgba(232, 106, 90, .20);
+  border-top: 3px solid var(--primary);
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(255,252,251,.76));
+  box-shadow: 0 12px 28px rgba(35, 12, 8, .05);
+}
+
+.pinned-heading{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(232, 106, 90, .26);
+}
+
+.pinned-headingMark{
+  color: var(--primary);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.pinned-eyebrow{
+  margin: 0;
+  color: var(--muted2);
+  font-size: 12px;
+  letter-spacing: .8px;
+}
+
+.pinned-heading h2{
+  margin: 0;
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.pinned-entry{
+  padding: 15px 0 17px;
+}
+
+.pinned-entry + .pinned-entry{
+  border-top: 1px dashed rgba(232, 223, 219, .9);
+}
+
+.pinned-entryTop{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.pinned-marker{
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid rgba(232, 106, 90, .30);
+  border-radius: 999px;
+  color: var(--link);
+  background: rgba(232, 106, 90, .08);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pinned-entryTop time{
+  color: var(--muted2);
+  font-size: 13px;
+}
+
+.pinned-entry h3{
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.pinned-entry h3 a{
+  color: var(--ink);
+}
+
+.pinned-entry h3 a:hover{
+  color: var(--link);
+}
+
+.pinned-entry p{
+  margin: 5px 0 7px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.pinned-entryLink{
+  color: var(--muted2);
+  font-size: 13px;
+}
+
+.pinned-entryLink:hover{
+  color: var(--link);
+}
+
 .home-feed .entry{
   margin-top: 0;
   width: 80%;
@@ -745,6 +846,7 @@ hr{
   .entry{ padding: 16px; }
   .home-feed .entry{ width: 92%; }
   .entry-detail{ width: 92%; padding: 8px 0; }
+  .pinned-section{ width: 92%; padding: 16px 15px 6px; }
   .archive-hero{ width: 92%; }
   .entry-archive{ width: 92%; padding: 8px 0; }
   .archive-pager{ width: 92%; }

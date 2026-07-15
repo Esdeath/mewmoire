@@ -1,0 +1,11 @@
+<article class="pinned-entry">
+  <div class="pinned-entryTop">
+    <span class="pinned-marker">置顶</span>
+    <time datetime="{{ item.date | dateISO }}">{{ item.date | dateReadable }}</time>
+  </div>
+  <h3><a href="{{ item.url | url }}">{{ item.data.title }}</a></h3>
+  {% if item.data.description %}
+    <p>{{ item.data.description }}</p>
+  {% endif %}
+  <a class="pinned-entryLink" href="{{ item.url | url }}">阅读这篇 →</a>
+</article>
