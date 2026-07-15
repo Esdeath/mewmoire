@@ -15,14 +15,7 @@ title: "Home"
 
 {% set pinnedItems = collections.diaryPinned %}
 {% if pinnedItems and (pinnedItems | length) > 0 %}
-  <section class="pinned-section" aria-labelledby="pinned-title">
-    <div class="pinned-heading">
-      <span class="pinned-headingMark" aria-hidden="true">✦</span>
-      <div>
-        <p class="pinned-eyebrow">重要的几颗星</p>
-        <h2 id="pinned-title">置顶</h2>
-      </div>
-    </div>
+  <section class="pinned-section" aria-label="置顶文章">
     <div class="pinned-list">
       {% for item in pinnedItems %}
         {% include "components/pinnedEntry.njk" %}

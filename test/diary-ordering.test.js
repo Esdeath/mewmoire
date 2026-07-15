@@ -41,5 +41,19 @@ assert.doesNotMatch(
   /\*\*[^*\n]+\*\*[\u3400-\u9fff]/,
   "bold Markdown markers must not touch the following Chinese text"
 );
+assert.doesNotMatch(
+  note,
+  /^# 我的个人使命、愿景与原则$/m,
+  "the diary body should not repeat the old article heading"
+);
+
+const pinnedTemplate = fs.readFileSync(
+  "src/_includes/components/pinnedEntry.njk",
+  "utf8"
+);
+assert.match(pinnedTemplate, /class="pinned-marker"/, "pinned rows need a pin label");
+assert.match(pinnedTemplate, /item\.data\.title/, "pinned rows need the article title");
+assert.doesNotMatch(pinnedTemplate, /item\.data\.description/, "pinned rows should not show descriptions");
+assert.doesNotMatch(pinnedTemplate, /dateReadable|pinned-entryLink/, "pinned rows should not show extra metadata or links");
 
 console.log("diary ordering test passed");
