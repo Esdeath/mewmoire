@@ -414,8 +414,7 @@ a:hover{ text-decoration: none; }
 }
 
 .pinned-section{
-  width: fit-content;
-  max-width: min(80%, 720px);
+  width: 80%;
   margin: 26px auto 0;
   padding: 6px 16px;
   border: 1px solid rgba(232, 106, 90, .20);
