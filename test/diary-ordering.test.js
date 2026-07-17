@@ -56,4 +56,11 @@ assert.match(pinnedTemplate, /item\.data\.title/, "pinned rows need the article 
 assert.doesNotMatch(pinnedTemplate, /item\.data\.description/, "pinned rows should not show descriptions");
 assert.doesNotMatch(pinnedTemplate, /dateReadable|pinned-entryLink/, "pinned rows should not show extra metadata or links");
 
+const archiveTemplate = fs.readFileSync("src/archive.njk", "utf8");
+assert.match(
+  archiveTemplate,
+  /components\/pinnedSection\.njk/,
+  "the archive page should include the same pinned row module"
+);
+
 console.log("diary ordering test passed");

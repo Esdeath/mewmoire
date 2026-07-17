@@ -1,0 +1,9 @@
+{% if pinnedItems and (pinnedItems | length) > 0 %}
+  <section class="pinned-section" aria-label="置顶文章">
+    <div class="pinned-list">
+      {% for item in pinnedItems %}
+        {% include "components/pinnedEntry.njk" %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

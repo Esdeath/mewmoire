@@ -14,15 +14,7 @@ title: "Home"
 </section>
 
 {% set pinnedItems = collections.diaryPinned %}
-{% if pinnedItems and (pinnedItems | length) > 0 %}
-  <section class="pinned-section" aria-label="置顶文章">
-    <div class="pinned-list">
-      {% for item in pinnedItems %}
-        {% include "components/pinnedEntry.njk" %}
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+{% include "components/pinnedSection.njk" %}
 
 {% set items = collections.diary | take(12) %}
 {% set hasMore = collections.diary and (collections.diary | length) > (items | length) %}

@@ -12,6 +12,9 @@ permalink: "{% if pagination.pageNumber == 0 %}/archive/index.html{% else %}/arc
   <p>把这一年的亮晶晶按月份排好，翻起来更顺手。</p>
 </section>
 
+{% set pinnedItems = archiveYear.items | pinned %}
+{% include "components/pinnedSection.njk" %}
+
 {% set items = archiveYear.items %}
 {% if items and (items | length) > 0 %}
   <article class="entry entry-archive">

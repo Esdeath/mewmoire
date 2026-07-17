@@ -59,6 +59,11 @@ function configureEleventy(eleventyConfig) {
     return arr.slice(0, n);
   });
 
+  eleventyConfig.addFilter("pinned", (items) => {
+    if (!Array.isArray(items)) return [];
+    return getPinnedDiaryEntries(items);
+  });
+
   // Diary collection: sorted newest first
   eleventyConfig.addCollection("diary", (collectionApi) => {
     return sortDiaryEntries(collectionApi.getFilteredByTag("diary"));

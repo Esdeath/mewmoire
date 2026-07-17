@@ -428,6 +428,7 @@ a:hover{ text-decoration: none; }
 .pinned-entry{
   display: flex;
   align-items: baseline;
+  min-width: 0;
   gap: 12px;
   padding: 9px 0;
 }
@@ -453,6 +454,9 @@ a:hover{ text-decoration: none; }
   margin: 0;
   font-size: 17px;
   line-height: 1.45;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pinned-entry h2 a{
