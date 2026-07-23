@@ -392,6 +392,26 @@ a:hover{ text-decoration: none; }
   word-break: normal;
 }
 
+/* Mermaid diagrams keep their natural width so long LR flows stay legible. */
+.prose pre.mermaid{
+  position: relative;
+  left: 50%;
+  width: calc(100vw - 32px);
+  max-width: 1200px;
+  transform: translateX(-50%);
+  padding: 18px;
+  background: var(--surface2);
+  overflow-x: auto;
+  text-align: center;
+}
+.prose pre.mermaid svg{
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
 /* Blockquotes — warm accent bar */
 .prose blockquote{
   margin: 0 0 16px;
@@ -804,4 +824,8 @@ hr{
   .archive-pager{ width: 92%; }
   .home-feed .entry-sep{ width: 140px; }
   .wrap{ padding: 16px; }
+  .prose pre.mermaid svg{
+    width: 900px;
+    max-width: none;
+  }
 }

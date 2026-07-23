@@ -97,6 +97,21 @@ function configureEleventy(eleventyConfig) {
     md.renderer.rules.table_open = () => '<div class="table-wrap">\n<table>\n';
     md.renderer.rules.table_close = () => "</table>\n</div>\n";
 
+    const defaultFenceRenderer = md.renderer.rules.fence;
+    md.renderer.rules.fence = (tokens, index, options, env, renderer) => {
+      const token = tokens[index];
+      const language = md.utils
+        .unescapeAll(token.info || "")
+        .trim()
+        .split(/\s+/)[0];
+
+      if (language === "mermaid") {
+        return `<pre class="mermaid">${md.utils.escapeHtml(token.content)}</pre>\n`;
+      }
+
+      return defaultFenceRenderer(tokens, index, options, env, renderer);
+    };
+
     md.core.ruler.after("inline", "task-lists", (state) => {
       const tokens = state.tokens;
       for (let i = 2; i < tokens.length; i++) {
