@@ -6,5 +6,6 @@ meta/
 *.log
 .env
 .venv/
+.workbuddy/
 src/assets/fonts/*.woff2
 src/assets/fonts/*.meta.json
