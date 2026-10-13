@@ -305,6 +305,14 @@ a:hover{ text-decoration: none; }
 .prose p:last-child{ margin-bottom: 0; }
 .prose strong{ color: #1f1f1f; }
 
+/* Keep article images inside the readable column without changing their ratio. */
+.prose img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 16px;
+}
+
 /* Tables — warm, readable; horizontal scroll on narrow screens */
 .prose .table-wrap{
   overflow-x: auto;
